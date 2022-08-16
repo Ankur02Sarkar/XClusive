@@ -1,0 +1,16 @@
+.checkoutProduct {
+  display: flex;
+  flex-wrap: wrap;
+}
+.checkoutProductImg {
+  max-width: 25%;
+}
+.checkoutProductInfo {
+  flex: 1;
+}
+.checkoutProductInfo button{
+    margin-top: 10px;
+    background-color: orange;
+    border: 1px;
+    padding: 5px;
+}
