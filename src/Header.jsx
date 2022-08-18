@@ -1,10 +1,13 @@
 import React from 'react';
 import "./Header.css";
-import { Link } from 'react-router-dom';
 import StoreIcon from '@mui/icons-material/Store';
 import SearchIcon from '@mui/icons-material/Search';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-function header() {
+import { Link } from 'react-router-dom';
+import { useStateValue } from "./StateProvider";
+function Header() {
+    // const [{ basket }] = useStateValue();
+    const [{ basket }, dispatch] = useStateValue();
     return (
         <div className='header'>
             <Link to="/" style={{ textDecoration: "none" }}>
@@ -28,7 +31,7 @@ function header() {
                 </div>
                 <Link to="/checkout" style={{ textDecoration: "none" }}>
                     <div className="nav_item basket nav_itemBasket">
-                        <div className="nav_itemLineTwo nav_basketCount">0</div>
+                        <div className="nav_itemLineTwo nav_basketCount"> {basket.length} </div>
                         <ShoppingCartIcon className="" fontSize="large" />
                     </div>
                 </Link>
@@ -37,4 +40,4 @@ function header() {
     )
 }
 
-export default header
+export default Header
