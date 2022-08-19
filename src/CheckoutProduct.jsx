@@ -1,24 +1,36 @@
 import React from 'react'
 import "./CheckoutProduct.css";
-function CheckoutProduct() {
+import { useStateValue } from "./StateProvider";
+function CheckoutProduct({ id, image, title, price, rating }) {
+    const [{basket}, dispatch] = useStateValue();
+    const removeFromBasket = () => {
+        dispatch({
+            type: "REMOVE_FROM_BASKET",
+            id: id,
+        })
+    }
     return (
         <div>
             <div className="checkoutProduct">
-                <img src="https://i.ibb.co/MB1QTm9/pixel-6-pro-black-buds-desktop-Web-P-Format-488-context-b-WFzd-GVyf-HJvb3-R8-MTc1-Mj-B8a-W1h-Z2-Uvd2.webp" alt="" className="checkoutProductImg" />
+                <img src={image} alt="" className="checkoutProductImg" />
                 <div className="checkoutProductInfo">
                     <p className="checkoutProductTitle">
                         <strong>
-                            Google Pixel 3 Pro with 256 GB Internal Memory and 6 GB RAM. Get the Latest FlagShip from Android One
+                        {title}
                         </strong>
                     </p>
                     <p className="checkoutProductPrice">
                         <small>$</small>
-                        <strong>20</strong>
+                        <strong> {price} </strong>
                     </p>
                     <div className="checkoutProductRating">
-                        ⭐⭐⭐
+                        {Array(rating)
+                            .fill()
+                            .map((_, i) => (
+                                <p>⭐</p>
+                            ))}
                     </div>
-                    <button>Remove from Basket</button>
+                    <button onClick={removeFromBasket}>Remove from Basket</button>
                 </div>
             </div>
         </div>

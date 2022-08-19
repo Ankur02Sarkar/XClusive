@@ -2,7 +2,9 @@ import React from 'react'
 import "./Checkout.css"
 import CheckoutProduct from "./CheckoutProduct";
 import Subtotal from "./Subtotal";
-function checkout() {
+import { useStateValue } from "./StateProvider";
+function Checkout() {
+  const [{basket}, dispatch] = useStateValue();
   return (
     <div>
       <div className="checkout">
@@ -10,9 +12,15 @@ function checkout() {
           <img src="https://i.ibb.co/3TCqhW7/mega-sale-concept-horizontal-banner-template-design-discount-abstract-vector-id1198830919.jpg" className='checkoutAd' alt="" />
           <div className="item">
             <h2 className="checkoutTitle"> Your Shopping Basket </h2>
-            <CheckoutProduct />
-            <CheckoutProduct />
-            <CheckoutProduct />
+            {basket.map(item => (
+              <CheckoutProduct
+                id = {item.id}
+                title = {item.title}
+                image = {item.image}
+                price = {item.price}
+                rating = {item.rating}
+              />
+            ))}
           </div>
         </div>
         <div className="checkoutRight">
@@ -23,4 +31,4 @@ function checkout() {
   )
 }
 
-export default checkout
+export default Checkout
